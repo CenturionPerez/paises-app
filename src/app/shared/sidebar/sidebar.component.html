@@ -1,1 +1,23 @@
-<p>sidebar works!</p>
+
+<h2>Busquedas</h2>
+<hr>
+<ul class="list-group">
+    <!--ROUTER LINK = ""
+        Router Module permite meter una propiedad llamada routerlInk=""
+        poniendo dentro el path del modulo de routing de la ruta que queramos
+    -->
+    <!--ROUTER LINK ACTIVE = ""
+        Router Module permite meter una propiedad llamada routerlInkActive=""
+        poniendo una clase que queremos que ejecute cuando ese elemento es pulsado o activado
+    -->
+    <!--[routerLinkActiveOptions]="{exact:true}"
+        Router Module permite meter una propiedad llamada [routerLinkActiveOptions]="{exact:true}"
+        poniendo exact:true que aunque sea la pagina rpincipal no este activa si pulsamos en otra
+    -->
+    <li routerLink=""
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact:true}"
+        class="list-group-item">Buscar país</li>
+    <li routerLink="region" routerLinkActive="active" class="list-group-item">Por region</li>
+    <li routerLink="capital" routerLinkActive="active" class="list-group-item">Por capital</li>
+</ul>

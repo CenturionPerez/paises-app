@@ -10,7 +10,7 @@ const routes: Routes = [
 
         path: '',//Ruta componente principal, no ponemos nada en path-->http://localhost:4200/
         component: PorPaisComponent,
-        pathMatch: 'full'
+        pathMatch: 'full'//Propiedad que siempre hace que se muestre
     },
     {
         path: 'region',//http://localhost:4200/region
@@ -21,7 +21,7 @@ const routes: Routes = [
         component: PorCapitalComponent
     },
     {
-        path:'pais/:codigoPais',//http://localhost:4200/pais/variabelDinamicaCodigoPais
+        path:'pais/:countryId',//http://localhost:4200/pais/variabelDinamicaCodigoPais
         component: VerPaisComponent
     },
     {

@@ -1,1 +1,47 @@
-<p>ver-pais works!</p>
+<div *ngIf="!pais; else divPais"
+    class="alert alert-info">
+    Espere por favor...
+</div>
+
+<ng-template #divPais>
+    <div class="row">
+        <div class="col-12">
+            <h1>Pais:<small>{{pais.name.common}}</small></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <h3>Bandera</h3>
+            <img [src]="pais.flags.png" class="img-thumbnail">
+        </div>
+        <div class="col-4">
+            <h3>Informacion</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <strong>Población:</strong> {{pais.population | number}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Región:</strong> {{pais.region}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Codigo alpha:</strong> {{pais.cca2}}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>Traducciones</h3>
+    <div class="row">
+        <!--PIPE KEYVALUE ->Permite recorrer un objeto. Tiene el KEY. y VALUE.-->
+        <div class="col" *ngFor="let translate of pais.translations | keyvalue">
+            <span class="badge bg-primary mr-1">
+                {{translate.value.official}}
+            </span>
+        </div>
+    </div>
+    
+    <!--PIPE JSON ->Permite transformar un objeto a Json
+    <pre class="mt-5">
+        {{pais | json}}
+    </pre>-->
+</ng-template>
