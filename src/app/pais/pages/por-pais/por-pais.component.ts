@@ -5,27 +5,33 @@ import { Country } from '../../interfaces/pais.interfaces';
 
 @Component({
   selector: 'app-por-pais',
-  templateUrl: './por-pais.component.html'
+  templateUrl: './por-pais.component.html',
+  styles: [
+    `li{
+      cursor:pointer;
+    }`
+  ]
 })
 export class PorPaisComponent {
 
   termino: string = "";
   hayError: boolean = false;
   paises: Country[] = [];
+  paisesSugeridos: Country[] = [];
+  mostrarSugerencias: boolean = false;
   
   constructor(private paisService: PaisService){ }
 
     buscar(termino: string){
       this.hayError = false;
       this.termino = termino;
+      this.mostrarSugerencias = false;
       console.log(this.termino);
 
       //Si ponemos dentro de suscribe un segundo parametro
       //suscribe((resp) 0=>{},(err)=>{}) en err ira el error controlado
       const resp = this.paisService.buscarPais(this.termino).subscribe( (paises) => {
-        console.log(paises[0]);
         this.paises = paises;
-
       }, (err) =>{
         this.hayError = true;
         this.paises = [];
@@ -34,6 +40,18 @@ export class PorPaisComponent {
 
     sugerencias(termino: string){
       this.hayError = false;
+      this.termino = termino
+      this.mostrarSugerencias = true;
+      this.paisService.buscarPais(termino)
+        .subscribe( paises=> {
+          this.paisesSugeridos = paises.splice(0,5);
+        }, err => {
+          this.paisesSugeridos = [];
+        })
+    }
+
+    buscarSugerido(termino: string){
+      this.buscar( termino );
     }
 
 }
